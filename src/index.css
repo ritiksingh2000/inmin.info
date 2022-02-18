@@ -1,0 +1,23 @@
+body {
+  background: url(../public/Bg-IMG-2.png) no-repeat center center fixed;
+  background-size: cover;
+}
+
+#MainLogo {
+  font-family: Paytone One;
+  font-size: 2.5rem;
+}
+
+#Sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: auto;
+}
+#postImg {
+  max-width: 200px;
+
+  max-height: 200px;
+}
+#profileBio {
+  font-size: 12px;
+}
