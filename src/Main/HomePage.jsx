@@ -33,9 +33,7 @@ const HomePage = () => {
       ) : (
         <div className="container">
           <div className="row g-0 my-2">
-            {User !== null && (
-              <>
-                <div className="col-10 col-md-9 mx-auto px-md-5 py-2">
+    <div className="col-10 col-md-9 mx-auto px-md-5 py-2">
                   <div className="form-floating">
                     <input
                       type="text"
@@ -53,6 +51,9 @@ const HomePage = () => {
                     <label htmlFor="search">Search A Topic</label>
                   </div>
                 </div>
+            {User !== null && (
+              <>
+                
                 {User.isAuthor === true && (
                   <>
                     <div className="col-11 col-md-4 mx-auto mt-1 mb-3 px-2">
