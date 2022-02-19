@@ -15,14 +15,6 @@ const HomePage = () => {
       setIsLoadingData(false);
     }
   }, [allposts, User]);
-  const latestPosts = allposts.map((post) => {
-    const pDate = new Date(post.CreatedAt);
-    const theDate = `${pDate.getDate()}-${pDate.getDay()}-${pDate.getFullYear()} ${pDate.getHours()}:${pDate.getMinutes()}:${pDate.getSeconds()}`;
-    return { ...post, theDate };
-  });
-  latestPosts.sort((a, b) =>
-    a.theDate < b.theDate ? 1 : a.theDate > b.theDate ? -1 : 0
-  );
 
   return (
     <>
@@ -79,7 +71,7 @@ const HomePage = () => {
             {searchFilter === null ? (
               <>
                 <div className="col-11 col-md-8 p-1 mx-auto">
-                  {latestPosts
+                  {allposts
                     .filter((post) => allposts.indexOf(post) < 10)
                     .map((post) => {
                       return <PostCard post={post} key={post.id} />;
