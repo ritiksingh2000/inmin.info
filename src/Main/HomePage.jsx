@@ -60,8 +60,32 @@ const HomePage = () => {
             </div>
           </div>
           <div className="row g-0 my-2">
+<<<<<<< HEAD
             {User !== null && (
               <>
+=======
+    <div className="col-10 col-md-9 mx-auto px-md-5 py-2">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      placeholder="Search A Topic"
+                      onChange={(ele) => {
+                        if (ele.target.value.length > 0) {
+                          setSearchFilter(ele.target.value);
+                        } else {
+                          setSearchFilter(null);
+                        }
+                      }}
+                      className="form-control"
+                      id="search"
+                    />
+                    <label htmlFor="search">Search A Topic</label>
+                  </div>
+                </div>
+            {User !== null && (
+              <>
+                
+>>>>>>> 454cb4903717ca96602392b3a7933d8480e1faf8
                 {User.isAuthor === true && (
                   <>
                     <div className="col-11 col-md-4 mx-auto mt-1 mb-3 px-2">
