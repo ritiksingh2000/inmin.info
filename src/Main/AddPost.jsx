@@ -28,7 +28,6 @@ const AddPost = () => {
     setErrorMesg();
     setisLoading(true);
     if (image !== null) {
-      console.log("With Image");
       const postImgRef = ref(
         storage,
         `PostsImages/${User.id}/${image[0].name}`
@@ -43,6 +42,7 @@ const AddPost = () => {
                 Details: details,
                 Image: url,
                 Tags: tags,
+                Likes: [],
                 By: User,
                 CreatedAt: date,
               })
@@ -56,7 +56,6 @@ const AddPost = () => {
         })
         .catch((err) => setErrorMesg(err));
     } else {
-      console.log("Without Image");
       const postRef = collection(db, "posts");
       const createPost = await addDoc(postRef, {
         Subject: subject,

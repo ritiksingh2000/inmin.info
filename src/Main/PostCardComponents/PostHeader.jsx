@@ -31,7 +31,7 @@ const PostHeader = ({ post }) => {
           </Link>
         </div>
         <div className="col-4 mx-auto">
-          <p className="text-end">
+          <div className="text-end">
             <span className="small ">
               {User !== null && (
                 <>
@@ -51,7 +51,7 @@ const PostHeader = ({ post }) => {
                 !
               </button>{" "}
             </span>
-          </p>
+          </div>
         </div>
         <div
           className="modal fade"
