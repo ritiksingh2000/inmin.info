@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CurrentUser } from "../App";
 import { db, storage } from "../firebase";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddPost = () => {
   const User = CurrentUser();
@@ -15,12 +17,6 @@ const AddPost = () => {
   const [errorMesg, setErrorMesg] = useState();
   const [isLoading, setisLoading] = useState(false);
 
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setScreenSize(window.innerWidth);
-    });
-  }, []);
   const date = Date();
 
   const userAddPost = async () => {
@@ -113,154 +109,77 @@ const AddPost = () => {
             </>
           ) : (
             <>
-              {screenSize > 768 ? (
-                <>
-                  <form className="small">
-                    <div className="mb-3">
-                      <label htmlFor="postImg" className="form-label">
-                        Upoad An Image only
-                      </label>
-                      <input
-                        accept="image/*"
-                        className="form-control"
-                        type="file"
-                        id="postImg"
-                        onChange={(ele) => setImage(ele.target.files)}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="postTitle" className="form-label">
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="postTitle"
-                        onChange={(ele) => setSubject(ele.target.value)}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="details" className="form-label">
-                        SpeakUp
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="details"
-                        onChange={(ele) => setDetails(ele.target.value)}
-                        required
-                        rows="3"
-                      ></textarea>
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="tags" className="form-label">
-                        Add Tags
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="tags"
-                        onChange={(ele) => setTags(ele.target.value)}
-                        aria-describedby="tags"
-                      />
-                      <div id="tags" className="form-text">
-                        Seprate using comas.
-                      </div>
-                    </div>
-                    <div className="d-grid gap-2">
-                      <button
-                        className="btn btn-dark mx-md-5"
-                        onClick={userAddPost}
-                        type="reset"
-                      >
-                        Add Post
-                      </button>
-                    </div>
-                  </form>
-                </>
-              ) : (
-                <>
-                  <div className="collapse my-2" id="addPost">
-                    <div className="card card-body">
-                      <form className="small">
-                        <div className="mb-3">
-                          <label htmlFor="postImg" className="form-label">
-                            Upoad An Image only
-                          </label>
-                          <input
-                            accept="image/*"
-                            className="form-control"
-                            type="file"
-                            id="postImg"
-                            onChange={(ele) => setImage(ele.target.files)}
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label htmlFor="postTitle" className="form-label">
-                            Subject
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="postTitle"
-                            onChange={(ele) => setSubject(ele.target.value)}
-                            required
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <label htmlFor="details" className="form-label">
-                            SpeakUp
-                          </label>
-                          <textarea
-                            className="form-control"
-                            id="details"
-                            onChange={(ele) => setDetails(ele.target.value)}
-                            required
-                            rows="3"
-                          ></textarea>
-                        </div>
-                        <div className="mb-3">
-                          <label htmlFor="tags" className="form-label">
-                            Add Tags
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="tags"
-                            onChange={(ele) => setTags(ele.target.value)}
-                            aria-describedby="tags"
-                          />
-                          <div id="tags" className="form-text">
-                            Seprate using comas.
-                          </div>
-                        </div>
-                        <div className="d-grid gap-2">
-                          <button
-                            className="btn btn-dark mx-md-5"
-                            onClick={userAddPost}
-                            type="reset"
-                          >
-                            Add Post
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+              <form className=" text-start">
+                <div className="mb-3">
+                  <label htmlFor="postImg" className="form-label">
+                    Upoad An Image only
+                  </label>
+                  <input
+                    accept="image/*"
+                    class="form-control"
+                    type="file"
+                    id="formFile"
+                    onChange={(ele) => setImage(ele.target.files)}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="postTitle" className="form-label">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="postTitle"
+                    onChange={(ele) => setSubject(ele.target.value)}
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="details" className="form-label">
+                    SpeakUp
+                  </label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    config={{
+                      toolbar: [
+                        "bold",
+                        "italic",
+                        "link",
+                        "bulletedList",
+                        "numberedList",
+                      ],
+                    }}
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setDetails(data);
+                    }}
+                  />
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="tags" className="form-label">
+                    Add Tags
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="tags"
+                    onChange={(ele) => setTags(ele.target.value)}
+                    aria-describedby="tags"
+                  />
+                  <div id="tags" className="form-text">
+                    Seprate using comas.
                   </div>
-                  <p className="text-center py-2 my-0">
-                    <button
-                      className="btn btn-light shadow p-1 mx-1"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      id="addPostDropDown"
-                      data-bs-target="#addPost"
-                      aria-expanded="false"
-                      aria-controls="collapseExample"
-                    >
-                      <img src="https://img.icons8.com/material-rounded/20/000000/double-down.png" />
-                    </button>
-                  </p>
-                </>
-              )}
+                </div>
+                <div className="d-grid gap-2">
+                  <button
+                    className="btn btn-dark mx-md-5 fs-4"
+                    onClick={userAddPost}
+                    type="reset"
+                  >
+                    Add Post
+                  </button>
+                </div>
+              </form>
             </>
           )}
         </>

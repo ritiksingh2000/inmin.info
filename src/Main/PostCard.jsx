@@ -6,7 +6,6 @@ import PostHeader from "./PostCardComponents/PostHeader";
 
 const PostCard = ({ post }) => {
   const [warning, setWarning] = useState();
-
   const User = CurrentUser();
 
   return (

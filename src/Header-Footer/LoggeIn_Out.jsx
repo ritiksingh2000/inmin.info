@@ -15,7 +15,7 @@ const LoggeIn_Out = () => {
 
   return (
     <>
-      <div className="col-md-7 mx-auto border-bottom border-2 pt-md-4 border-white">
+      <div className="col-md-7 mx-auto border-bottom border-2 pt-md-2  border-white">
         {User === null ? (
           <>
             <div className="text-center d-flex justify-content-center py-3 my-0">
@@ -40,7 +40,7 @@ const LoggeIn_Out = () => {
               </Link>
               <button
                 type="button"
-                class="btn btn-light py-0 px-1 mx-1"
+                className="btn btn-light py-0 px-1 mx-1"
                 data-bs-toggle="modal"
                 data-bs-target="#mainMenu"
               >
@@ -64,9 +64,9 @@ const LoggeIn_Out = () => {
               >
                 Latest
               </Link>
-              <div class="dropdown">
+              <div className="dropdown">
                 <button
-                  class="btn btn-light px-1 py-1 px-md-2 mx-1 dropdown-toggle"
+                  className="btn btn-light px-1 py-1 px-md-2 mx-1 dropdown-toggle"
                   type="button"
                   id="dropdownMenuButton1"
                   data-bs-toggle="dropdown"
@@ -74,9 +74,12 @@ const LoggeIn_Out = () => {
                 >
                   <img src={User.Image} width="28px" /> {User.Username}
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton1"
+                >
                   <li>
-                    <Link class="dropdown-item" to={`/user/${User.id}`}>
+                    <Link className="dropdown-item" to={`/user/${User.id}`}>
                       My Profile
                     </Link>
                   </li>
@@ -95,7 +98,7 @@ const LoggeIn_Out = () => {
               </div>
               <button
                 type="button"
-                class="btn btn-light py-0 px-1 mx-1"
+                className="btn btn-light py-0 px-1 mx-1"
                 data-bs-toggle="modal"
                 data-bs-target="#mainMenu"
               >
@@ -106,37 +109,37 @@ const LoggeIn_Out = () => {
         )}
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="mainMenu"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="mainMenu"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="mainMenu">
+        <div className="modal-dialog modal-sm">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="mainMenu">
                 Menu
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <ul class="list-group list-group-flush">
+            <div className="modal-body">
+              <ul className="list-group list-group-flush">
                 <center>
                   <Link
                     to="/"
-                    class="btn btn-sm my-3 btn-outline-dark list-group-item"
+                    className="btn btn-sm my-3 btn-outline-dark list-group-item"
                   >
                     About Us
                   </Link>
                   <Link
                     to="/"
-                    class="btn btn-sm my-3 btn-outline-dark list-group-item"
+                    className="btn btn-sm my-3 btn-outline-dark list-group-item"
                   >
                     Contact Us
                   </Link>

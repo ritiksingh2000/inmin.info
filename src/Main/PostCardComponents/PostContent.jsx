@@ -1,24 +1,15 @@
+import HTMLReactParser from "html-react-parser";
 import React, { useEffect, useState } from "react";
 
 const PostContent = ({ post }) => {
-  const [readStatus, setReadStatus] = useState("read more");
   const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const Details = HTMLReactParser(post.Details);
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       setScreenSize(window.innerWidth);
     });
   }, []);
-  const [pdLen, setPdLen] = useState(140);
-
-  const readStatusHandel = () => {
-    if (readStatus === "read more") {
-      setReadStatus("read less");
-      setPdLen();
-    } else {
-      setReadStatus("read more");
-      setPdLen(140);
-    }
-  };
   return (
     <>
       <div className="card-body p-1">
@@ -36,21 +27,10 @@ const PostContent = ({ post }) => {
                 )}
               </div>
               <div className="flex-grow-1 ms-3">
-                <p className="h5 mt-2">{post.Subject}</p>
-                <p className="small">
-                  {post.Details.substring(0, pdLen)}{" "}
-                  {post.Details.length > 140 && (
-                    <>
-                      <a
-                        href={`#read/${post.id}`}
-                        onClick={readStatusHandel}
-                        className="link-primary small disabled"
-                      >
-                        {readStatus}
-                      </a>
-                    </>
-                  )}
+                <p className="h4 py-2 px-2 bg-light shadow-sm mt-2">
+                  {post.Subject}
                 </p>
+                <p className="small">{Details}</p>
               </div>
             </div>
           </>
@@ -65,21 +45,10 @@ const PostContent = ({ post }) => {
                 />
               )}
               <div className="flex-grow-1 ms-3">
-                <p className="h5 mt-2">{post.Subject}</p>
-                <p className="small">
-                  {post.Details.substring(0, pdLen)}{" "}
-                  {post.Details.length > 140 && (
-                    <>
-                      <a
-                        href={`#read/${post.id}`}
-                        onClick={readStatusHandel}
-                        className="link-primary small disabled"
-                      >
-                        {readStatus}
-                      </a>
-                    </>
-                  )}
+                <p className="h4 py-2 px-2 bg-light shadow-sm mt-2">
+                  {post.Subject}
                 </p>
+                <p className="small">{Details}</p>
               </div>
             </div>
           </>

@@ -32,45 +32,83 @@ const HomePage = () => {
           </div>
         </center>
       ) : (
-        <div className="container">
-          <div className="col-10 col-md-9 mx-auto px-md-5 py-2">
-            <div className="form-floating">
-              <input
-                type="text"
-                placeholder="Search A Topic"
-                onChange={(ele) => {
-                  if (ele.target.value.length > 0) {
-                    setSearchFilter(ele.target.value);
-                  } else {
-                    setSearchFilter(null);
-                  }
-                }}
-                className="form-control"
-                id="search"
-              />
-              <label htmlFor="search">Search A Topic</label>
+        <div className="row g-0">
+          <div className="col-10 col-md-8 mx-auto px-md-5 py-1">
+            <div className="row g-0">
+              <div className="col-9 mx-auto">
+                <center>
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      placeholder="Search A Topic"
+                      onChange={(ele) => {
+                        if (ele.target.value.length > 0) {
+                          setSearchFilter(ele.target.value);
+                        } else {
+                          setSearchFilter(null);
+                        }
+                      }}
+                      className="form-control"
+                      id="search"
+                    />
+                    <label htmlFor="search">Search A Topic</label>
+                  </div>
+                </center>
+              </div>
+              {User !== null && (
+                <>
+                  {User.isAuthor && (
+                    <>
+                      <div className="col-3 ">
+                        <center>
+                          <button
+                            type="button"
+                            className="btn btn-light px-2 py-3 fw-bold"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addPost"
+                          >
+                            Add Post
+                          </button>
+
+                          <div
+                            className="modal fade"
+                            id="addPost"
+                            tabIndex="-1"
+                            aria-labelledby="addPost"
+                            aria-hidden="true"
+                          >
+                            <div className="modal-dialog     modal-lg  ">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <h5 className="modal-title" id="addPost">
+                                    Add Post
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div className="modal-body">
+                                  <AddPost />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </center>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
             </div>
           </div>
+
           <div className="row g-0 my-2">
-            {User !== null && (
-              <>
-                {User.isAuthor === true && (
-                  <>
-                    <div className="col-11 col-md-4 mx-auto mt-1 mb-3 px-2">
-                      <div className="card card-body sticky-top">
-                        <p className="h4 text-center p-2 bg-light shadow-sm">
-                          Add Post
-                        </p>
-                        <AddPost />
-                      </div>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
             {searchFilter === null ? (
               <>
-                <div className="col-11 col-md-8 p-1 mx-auto">
+                <div className="col-11 col-md-10 p-1 mx-auto">
                   {allposts
                     .filter((post) => allposts.indexOf(post) < 10)
                     .map((post) => {
