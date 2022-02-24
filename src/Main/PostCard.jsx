@@ -10,7 +10,7 @@ const PostCard = ({ post }) => {
 
   return (
     <>
-      <div className="card mb-3" id={post.id}>
+      <div className="card mb-3 shadow" id={post.id}>
         <PostHeader post={post} User={User} />
         <PostContent post={post} />
         <PostFooter post={post} setWarning={setWarning} User={User} />

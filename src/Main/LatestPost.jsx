@@ -21,7 +21,7 @@ const LatestPost = () => {
           <div className="form-floating ">
             <input
               type="text"
-              placeholder="Search A Topic"
+              placeholder="Search A Keywoard"
               onChange={(ele) => {
                 if (ele.target.value.length > 0) {
                   setSearchFilter(ele.target.value);
@@ -32,7 +32,7 @@ const LatestPost = () => {
               className="form-control"
               id="search"
             />
-            <label htmlFor="search">Search A Topic</label>
+            <label htmlFor="search">Search A Keywoard</label>
           </div>
         </div>
         <div className="row g-0 mb-2">

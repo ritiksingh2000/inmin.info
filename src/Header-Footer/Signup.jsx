@@ -28,6 +28,7 @@ const Signup = ({ setView }) => {
             Username: username,
             Bio: bio,
             isAuthor: false,
+            isAdmin: false,
             Image:
               "https://img.icons8.com/external-others-inmotus-design/67/4a90e2/external-login-buttons-others-inmotus-design.png",
             uid: user.user.uid,

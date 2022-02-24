@@ -7,11 +7,14 @@ import { useEffect, useState } from "react";
 import Signup_Login from "./Header-Footer/Signup_Login";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { collection, doc, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import ProfilePage from "./Main/ProfilePage";
 import Error404 from "./Main/Error404";
 import LatestPost from "./Main/LatestPost";
 import TrendingPost from "./Main/TrendingPost";
+import AllPostsPage from "./Main/AllPostsPage";
+import AddCategory from "./Main/AddCategory";
+import CategoryPage from "./Main/CategoryComponents/CategoryPage";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -76,6 +79,20 @@ export const AllPosts = () => {
   return posts;
 };
 
+export const AllCategories = () => {
+  const [category, setAllCategories] = useState([]);
+  useEffect(async () => {
+    onSnapshot(collection(db, "category"), (snapshot) => {
+      const allData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setAllCategories(allData);
+    });
+  }, []);
+  return category;
+};
+
 function App() {
   return (
     <div className="App">
@@ -86,7 +103,10 @@ function App() {
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/user/signup_login" element={<Signup_Login />} />
             <Route exact path="/user/:userId" element={<ProfilePage />} />
+            <Route exact path="/:category/posts" element={<CategoryPage />} />
             <Route exact path="/posts/latest" element={<LatestPost />} />
+            <Route exact path="/posts/all" element={<AllPostsPage />} />
+            <Route exact path="/posts/add-category" element={<AddCategory />} />
             <Route exact path="/posts/trending" element={<TrendingPost />} />
             <Route path="*" element={<Error404 />} />
           </Routes>

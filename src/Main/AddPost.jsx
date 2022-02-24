@@ -2,12 +2,13 @@ import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CurrentUser } from "../App";
+import { AllCategories, CurrentUser } from "../App";
 import { db, storage } from "../firebase";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddPost = () => {
+  const Categories = AllCategories();
   const User = CurrentUser();
   const [image, setImage] = useState(null);
   const [subject, setSubject] = useState(null);
@@ -16,6 +17,7 @@ const AddPost = () => {
   const [successMesg, setSuccessMesg] = useState();
   const [errorMesg, setErrorMesg] = useState();
   const [isLoading, setisLoading] = useState(false);
+  const [ctgry, setCtgry] = useState();
 
   const date = Date();
 
@@ -38,6 +40,7 @@ const AddPost = () => {
                 Details: details,
                 Image: url,
                 Tags: tags,
+                Category: ctgry,
                 Likes: [],
                 By: User,
                 CreatedAt: date,
@@ -116,7 +119,7 @@ const AddPost = () => {
                   </label>
                   <input
                     accept="image/*"
-                    class="form-control"
+                    className="form-control"
                     type="file"
                     id="formFile"
                     onChange={(ele) => setImage(ele.target.files)}
@@ -134,6 +137,20 @@ const AddPost = () => {
                     required
                   />
                 </div>
+                <select
+                  className="form-select my-3"
+                  onChange={(ele) => setCtgry(ele.target.value)}
+                  aria-label="Default select example"
+                >
+                  <option selected disabled>
+                    Select Post Category . . .{" "}
+                  </option>
+                  {Categories.map((category) => (
+                    <option key={category.id} value={category.Name}>
+                      {category.Name}
+                    </option>
+                  ))}
+                </select>
                 <div className="mb-3">
                   <label htmlFor="details" className="form-label">
                     SpeakUp

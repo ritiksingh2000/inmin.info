@@ -1,5 +1,6 @@
 import HTMLReactParser from "html-react-parser";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PostContent = ({ post }) => {
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -30,7 +31,17 @@ const PostContent = ({ post }) => {
                 <p className="h4 py-2 px-2 bg-light shadow-sm mt-2">
                   {post.Subject}
                 </p>
-                <p className="small">{Details}</p>
+                <p className="small mb-3">{Details}</p>
+                <div className="small my-0">
+                  <b>Category : </b>
+                  <Link to={`/${post.Category}/posts`} className=" text-dark">
+                    {post.Category}
+                  </Link>
+                </div>
+                <div className="small">
+                  <b>Tags : </b>
+                  <span className="fst-italic">{post.Tags}</span>
+                </div>
               </div>
             </div>
           </>
@@ -48,7 +59,17 @@ const PostContent = ({ post }) => {
                 <p className="h4 py-2 px-2 bg-light shadow-sm mt-2">
                   {post.Subject}
                 </p>
-                <p className="small">{Details}</p>
+                <p className="small mb-3">{Details}</p>
+                <div className="small my-0">
+                  <b>Category : </b>
+                  <Link to={`/${post.Category}/posts`} className=" text-dark">
+                    {post.Category}
+                  </Link>
+                </div>
+                <div className="small">
+                  <b>Tags : </b>
+                  <span className="fst-italic">{post.Tags}</span>
+                </div>
               </div>
             </div>
           </>

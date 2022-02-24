@@ -32,15 +32,17 @@ const PostFooter = ({ post, User, setWarning }) => {
   };
   return (
     <>
-      <div className="card-footer row shadow-sm py-1">
-        <div className="col-6 mx-auto d-flex justify-content-center">
-          <button className="btn btn-outline-dark btn-sm" onClick={AddLike}>
-            {" "}
-            {post.Likes.length} Likes
-          </button>
-        </div>
-        <div className="col-6 mx-auto d-flex justify-content-center">
-          <Comments post={post} />
+      <div className="card-footer  shadow-sm py-1 px-0">
+        <div className="row">
+          <div className="col-6 mx-auto d-flex justify-content-center">
+            <button className="btn btn-outline-dark btn-sm" onClick={AddLike}>
+              {" "}
+              {post.Likes.length} Likes
+            </button>
+          </div>
+          <div className="col-6 mx-auto d-flex justify-content-center">
+            <Comments post={post} />
+          </div>
         </div>
       </div>
     </>

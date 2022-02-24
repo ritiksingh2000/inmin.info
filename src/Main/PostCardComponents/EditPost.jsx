@@ -1,4 +1,4 @@
-import { doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
 import { db, storage } from "../../firebase";
@@ -155,6 +155,16 @@ const EditPost = ({ post, User }) => {
                           type="button"
                         >
                           Update
+                        </button>
+                        <button
+                          className="btn btn-danger mx-md-5"
+                          onClick={() => {
+                            deleteDoc(doc(db, "posts", post.id));
+                            window.location.reload();
+                          }}
+                          type="button"
+                        >
+                          Delete
                         </button>
                       </div>
                     </div>
