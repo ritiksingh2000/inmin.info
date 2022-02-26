@@ -98,9 +98,11 @@ const Report = ({ post }) => {
               ) : (
                 <>
                   <div className="mb-3">
-                    <label htmlFor="reasonToReport" className="form-label">
-                      Reason For The Report
-                    </label>
+                    <center>
+                      <label htmlFor="reasonToReport" className="form-label h5">
+                        Reason For The Report
+                      </label>
+                    </center>
                     <textarea
                       className="form-control"
                       id="reasonToReport"

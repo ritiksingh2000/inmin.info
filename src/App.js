@@ -15,6 +15,8 @@ import TrendingPost from "./Main/TrendingPost";
 import AllPostsPage from "./Main/AllPostsPage";
 import AddCategory from "./Main/AddCategory";
 import CategoryPage from "./Main/CategoryComponents/CategoryPage";
+import AboutUs from "./Main/AboutUs";
+import ContactUs from "./Main/ContactUs";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -108,6 +110,8 @@ function App() {
             <Route exact path="/posts/all" element={<AllPostsPage />} />
             <Route exact path="/posts/add-category" element={<AddCategory />} />
             <Route exact path="/posts/trending" element={<TrendingPost />} />
+            <Route exact path="/About-Us/" element={<AboutUs />} />
+            <Route exact path="/Contact-Us/" element={<ContactUs />} />
             <Route path="*" element={<Error404 />} />
           </Routes>
         </>

@@ -23,7 +23,7 @@ const CategoryPage = () => {
       setTheCategory(filteredCatg);
       setIsLoading(false);
     }
-  }, [Categories, posts]);
+  }, [Categories, posts, ctg]);
 
   return (
     <div className="container">

@@ -57,80 +57,41 @@ const LoggeIn_Out = () => {
                   </li>
                 </ul>
               </div>
-
-              <button
-                type="button"
-                className="btn btn-light px-1 py-1 px-md-2 mx-1"
-                data-bs-toggle="modal"
-                data-bs-target="#categoryModal"
-              >
-                Categories
-              </button>
-
-              <div
-                className="modal fade"
-                id="categoryModal"
-                tabIndex="-1"
-                aria-labelledby="categoryModal"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-lg  ">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="categoryModal">
-                        You are intrested in . . .
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="modal-body bg-light">
-                      <div className="row g-0">
-                        {Categories !== null && Categories !== undefined && (
-                          <>
-                            {Categories.map((category) => (
-                              <div
-                                className="col-md-6 mx-auto p-2"
-                                key={category.id}
-                              >
-                                <Link
-                                  to={`/${category.Name}/posts`}
-                                  className="text-decoration-none text-dark"
-                                >
-                                  <div className="card shadow">
-                                    <div className="row g-0">
-                                      <div className="col-4 col-lg-3 bg-white">
-                                        <img
-                                          src={category.Image}
-                                          alt="..."
-                                          className="img-fluid "
-                                        />
-                                      </div>
-                                      <div className="col-8 col-lg-9">
-                                        <div className="card-body py-1">
-                                          <h3 className="h3 text-start">
-                                            {category.Name}
-                                          </h3>
-                                          <hr className="my-1" />
-                                          <p className=" small text-start">
-                                            {category.Description}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </Link>
-                              </div>
-                            ))}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="dropdown">
+                <button
+                  className="btn btn-light mx-1  dropdown-toggle"
+                  type="button"
+                  id="Category"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Categories
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="Category">
+                  {Categories !== null && Categories !== undefined && (
+                    <>
+                      {Categories.map((catgry) => (
+                        <li
+                          className="border-bottom border-dark"
+                          key={catgry.id}
+                        >
+                          <Link
+                            className="dropdown-item small"
+                            to={`/${catgry.Name}/posts`}
+                          >
+                            <img
+                              src={catgry.Image}
+                              width="28px"
+                              className="img-thumbnail"
+                              alt="..."
+                            />{" "}
+                            {catgry.Name}
+                          </Link>
+                        </li>
+                      ))}
+                    </>
+                  )}
+                </ul>
               </div>
               <Link
                 to="/user/signup_login"
@@ -188,81 +149,43 @@ const LoggeIn_Out = () => {
                   </li>
                 </ul>
               </div>
-
-              <button
-                type="button"
-                className="btn btn-light px-1 py-1 px-md-2 mx-1"
-                data-bs-toggle="modal"
-                data-bs-target="#categoryModal"
-              >
-                Categories
-              </button>
-
-              <div
-                className="modal fade"
-                id="categoryModal"
-                tabIndex="-1"
-                aria-labelledby="categoryModal"
-                aria-hidden="true"
-              >
-                <div className="modal-dialog modal-lg  ">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="categoryModal">
-                        You are intrested in . . .
-                      </h5>
-                      <button
-                        type="button"
-                        className="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div className="modal-body bg-light">
-                      <div className="row g-0">
-                        {Categories !== null && Categories !== undefined && (
-                          <>
-                            {Categories.map((category) => (
-                              <div
-                                className="col-md-6 mx-auto p-2"
-                                key={category.id}
-                              >
-                                <Link
-                                  to={`/${category.Name}/posts`}
-                                  className="text-decoration-none text-dark"
-                                >
-                                  <div className="card shadow">
-                                    <div className="row g-0">
-                                      <div className="col-4 col-lg-3 bg-white">
-                                        <img
-                                          src={category.Image}
-                                          alt="..."
-                                          className="img-fluid "
-                                        />
-                                      </div>
-                                      <div className="col-8 col-lg-9">
-                                        <div className="card-body py-1">
-                                          <h3 className="h3 text-start">
-                                            {category.Name}
-                                          </h3>
-                                          <hr className="my-1" />
-                                          <p className=" small text-start">
-                                            {category.Description}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </Link>
-                              </div>
-                            ))}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="dropdown">
+                <button
+                  className="btn btn-light mx-1  dropdown-toggle"
+                  type="button"
+                  id="Category"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Categories
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="Category">
+                  {Categories !== null && Categories !== undefined && (
+                    <>
+                      {Categories.map((catgry) => (
+                        <li
+                          className="border-bottom border-dark"
+                          key={catgry.id}
+                        >
+                          <Link
+                            className="dropdown-item small"
+                            to={`/${catgry.Name}/posts`}
+                          >
+                            <img
+                              src={catgry.Image}
+                              width="28px"
+                              className="img-thumbnail"
+                              alt="..."
+                            />{" "}
+                            {catgry.Name}
+                          </Link>
+                        </li>
+                      ))}
+                    </>
+                  )}
+                </ul>
               </div>
+
               <div className="dropdown">
                 <button
                   className="btn btn-light px-1 py-1 px-md-2 mx-1 dropdown-toggle"
@@ -307,6 +230,7 @@ const LoggeIn_Out = () => {
           </>
         )}
       </div>
+
       <div
         className="modal fade"
         id="mainMenu"
@@ -331,13 +255,13 @@ const LoggeIn_Out = () => {
               <ul className="list-group list-group-flush">
                 <center>
                   <Link
-                    to="/"
+                    to="/About-Us/"
                     className="btn btn-sm my-3 btn-outline-dark list-group-item"
                   >
                     About Us
                   </Link>
                   <Link
-                    to="/"
+                    to="/Contact-Us/"
                     className="btn btn-sm my-3 btn-outline-dark list-group-item"
                   >
                     Contact Us

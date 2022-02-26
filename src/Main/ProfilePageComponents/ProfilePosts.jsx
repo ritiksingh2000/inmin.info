@@ -18,11 +18,9 @@ const ProfilePosts = ({ profileUser }) => {
         <div className="row g-0">
           {profileUserPosts.map((post) => {
             return (
-              <>
-                <div className="col-lg-6 mx-auto p-1">
-                  <PostCard post={post} key={post.id} />
-                </div>
-              </>
+              <div className="col-lg-6 mx-auto p-1" key={post.id}>
+                <PostCard post={post} key={post.id} />
+              </div>
             );
           })}
         </div>

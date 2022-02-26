@@ -142,9 +142,7 @@ const AddPost = () => {
                   onChange={(ele) => setCtgry(ele.target.value)}
                   aria-label="Default select example"
                 >
-                  <option selected disabled>
-                    Select Post Category . . .{" "}
-                  </option>
+                  <option disabled>Select Post Category . . . </option>
                   {Categories.map((category) => (
                     <option key={category.id} value={category.Name}>
                       {category.Name}
