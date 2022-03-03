@@ -9,13 +9,14 @@ const Comments = ({ post }) => {
   const User = CurrentUser();
   const [comment, setComment] = useState();
   const addComment = async () => {
-    document.getElementById("CommentForm").reset();
-    await addDoc(collection(db, "postComments"), {
-      from: User,
-      post: post.id,
-      Comment: comment,
-      AddedOn: Date(),
-    });
+    console.log(User, Date());
+    // document.getElementById("CommentForm").reset();
+    // await addDoc(collection(db, "postComments"), {
+    //   from: User,
+    //   post: post.id,
+    //   Comment: comment,
+    //   AddedOn: Date(),
+    // });
   };
 
   return (
@@ -55,10 +56,14 @@ const Comments = ({ post }) => {
                     <div className="card mb-3" key={comment.id}>
                       <div className="card-header shadow-sm p-2">
                         <p className="small m-0 p-0">
-                          <img src={post.By.Image} alt="..." width="28px" />
-                          {"  " + post.By.Username} -{" "}
+                          <img
+                            src={comment.from.Image}
+                            alt="..."
+                            width="28px"
+                          />
+                          {"  " + comment.from.Username} -{" "}
                           <span className="text-muted fst-italic">
-                            {post.CreatedAt.substring(0, 21)}
+                            {comment.AddedOn.substring(0, 21)}
                           </span>
                         </p>
                       </div>

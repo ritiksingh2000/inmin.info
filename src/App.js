@@ -17,6 +17,7 @@ import AddCategory from "./Main/AddCategory";
 import CategoryPage from "./Main/CategoryComponents/CategoryPage";
 import AboutUs from "./Main/AboutUs";
 import ContactUs from "./Main/ContactUs";
+import Donate from "./Main/Donate";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -102,16 +103,27 @@ function App() {
         <Header />
         <>
           <Routes>
+
+            {/* Homa Page */}
             <Route exact path="/" element={<HomePage />} />
+            
+            {/* Login Signup */}
             <Route exact path="/user/signup_login" element={<Signup_Login />} />
             <Route exact path="/user/:userId" element={<ProfilePage />} />
+
+            {/* Content Filter Navigation */}
             <Route exact path="/:category/posts" element={<CategoryPage />} />
             <Route exact path="/posts/latest" element={<LatestPost />} />
             <Route exact path="/posts/all" element={<AllPostsPage />} />
             <Route exact path="/posts/add-category" element={<AddCategory />} />
             <Route exact path="/posts/trending" element={<TrendingPost />} />
+            
+            {/* Menu Navigation */}
             <Route exact path="/About-Us/" element={<AboutUs />} />
             <Route exact path="/Contact-Us/" element={<ContactUs />} />
+            <Route exact path="/donate/" element={<Donate />} />
+
+            {/* 404 Error Page */}
             <Route path="*" element={<Error404 />} />
           </Routes>
         </>
