@@ -29,6 +29,7 @@
 - Creating Post
 - Editing Post
 - Like The Post
+- Search through the Posts
 - Comment on Posts
 - Report a Post
 - Contact Us Page
