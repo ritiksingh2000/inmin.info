@@ -18,6 +18,7 @@ import CategoryPage from "./Main/CategoryComponents/CategoryPage";
 import AboutUs from "./Main/AboutUs";
 import ContactUs from "./Main/ContactUs";
 import Donate from "./Main/Donate";
+import SharedPost from "./Main/SharedPost";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -103,10 +104,9 @@ function App() {
         <Header />
         <>
           <Routes>
-
             {/* Homa Page */}
             <Route exact path="/" element={<HomePage />} />
-            
+
             {/* Login Signup */}
             <Route exact path="/user/signup_login" element={<Signup_Login />} />
             <Route exact path="/user/:userId" element={<ProfilePage />} />
@@ -117,7 +117,8 @@ function App() {
             <Route exact path="/posts/all" element={<AllPostsPage />} />
             <Route exact path="/posts/add-category" element={<AddCategory />} />
             <Route exact path="/posts/trending" element={<TrendingPost />} />
-            
+            <Route exact path="/shared/:PostId" element={<SharedPost />} />
+
             {/* Menu Navigation */}
             <Route exact path="/About-Us/" element={<AboutUs />} />
             <Route exact path="/Contact-Us/" element={<ContactUs />} />

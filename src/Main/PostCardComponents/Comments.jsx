@@ -1,7 +1,7 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { CurrentUser, PostsComments } from "../../App";
-import { db } from "../../firebase";
+import commentIco from "../imgs/comment.png";
 
 const Comments = ({ post }) => {
   const AllComments = PostsComments();
@@ -22,11 +22,16 @@ const Comments = ({ post }) => {
   return (
     <>
       <button
-        className="btn btn-outline-dark btn-sm"
+        className="btn btn-light btn-sm pt-0"
         data-bs-toggle="modal"
         data-bs-target={`#commentsModal${post.id}`}
       >
-        Comments
+        <img
+          src={commentIco}
+          alt="comment"
+          className="img-fluid"
+          width="22px"
+        />
       </button>
 
       <div

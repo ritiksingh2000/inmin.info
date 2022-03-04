@@ -22,7 +22,7 @@ const PostContent = ({ post }) => {
                   <img
                     src={post.Image}
                     id="postImg"
-                    className="img-thumbnail"
+                    className="img-fluid"
                     alt="..."
                   />
                 )}
@@ -50,7 +50,7 @@ const PostContent = ({ post }) => {
             <div className="card">
               {post.Image != null && (
                 <img
-                  className="card-image img-thumbnail shadow-sm"
+                  className="card-image img-fluid"
                   src={post.Image}
                   alt="..."
                 />
