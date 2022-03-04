@@ -31,6 +31,7 @@
 - Like The Post
 - Search through the Posts
 - Comment on Posts
+- Share a Post
 - Report a Post
 - Contact Us Page
 - About Us Page
