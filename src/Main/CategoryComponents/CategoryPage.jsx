@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AllCategories, AllPosts } from "../../App";
+import Loading from "../ExtraComponents/Loading";
+import NoData from "../ExtraComponents/NoData";
 import CategoryBody from "./CategoryBody";
 import CategoryHeader from "./CategoryHeader";
 
@@ -22,29 +24,18 @@ const CategoryPage = () => {
       );
       setTheCategory(filteredCatg);
       setIsLoading(false);
+    } else {
+      setIsLoading(false);
     }
   }, [Categories, posts, ctg]);
 
   return (
     <div className="container">
       {isLoading ? (
+        <Loading />
+      ) : CTGposts.length === 0 ? (
         <>
-          <div className="card card-body my-4 py-5">
-            <center>
-              <button
-                className="btn btn-dark btn-lg fs-3"
-                type="button"
-                disabled
-              >
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>{" "}
-                Loading Data . . .
-              </button>
-            </center>
-          </div>
+          <NoData />
         </>
       ) : (
         <>
@@ -54,15 +45,7 @@ const CategoryPage = () => {
               <CategoryBody CTGposts={CTGposts} />
             </>
           ) : (
-            <>
-              <div className="card card-body">
-                <center>
-                  <div className="alert alert-dark h4 text-center" role="alert">
-                    No Posts Related To {ctg}
-                  </div>
-                </center>
-              </div>
-            </>
+            <NoData />
           )}
         </>
       )}

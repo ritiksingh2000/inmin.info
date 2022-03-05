@@ -266,13 +266,13 @@ const LoggeIn_Out = () => {
                   >
                     Contact Us
                   </Link>
-                  <hr className="my-3" />
+                  {/* <hr className="my-3" />
                   <Link
                     to="/donate/"
                     className="btn btn-lg my-1 btn-warning shadow fw-bold py-1"
                   >
                     Donate
-                  </Link>
+                  </Link> */}
                 </center>
               </ul>
             </div>

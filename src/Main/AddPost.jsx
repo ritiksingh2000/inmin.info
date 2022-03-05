@@ -6,6 +6,7 @@ import { AllCategories, CurrentUser } from "../App";
 import { db, storage } from "../firebase";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Loading from "./ExtraComponents/Loading";
 
 const AddPost = () => {
   const Categories = AllCategories();
@@ -103,13 +104,7 @@ const AddPost = () => {
             </div>
           )}
           {isLoading ? (
-            <>
-              <center>
-                <div className="spinner-border text-dark my-2" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-              </center>
-            </>
+            <Loading/>
           ) : (
             <>
               <form className=" text-start">

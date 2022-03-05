@@ -1,5 +1,6 @@
 import React from "react";
 import { AllPosts } from "../../App";
+import NoData from "../ExtraComponents/NoData";
 import PostCard from "../PostCard";
 
 const ProfilePosts = ({ profileUser }) => {
@@ -16,13 +17,21 @@ const ProfilePosts = ({ profileUser }) => {
           </p>
         </div>
         <div className="row g-0">
-          {profileUserPosts.map((post) => {
-            return (
-              <div className="col-lg-6 mx-auto p-1" key={post.id}>
-                <PostCard post={post} key={post.id} />
-              </div>
-            );
-          })}
+          {profileUserPosts.length === 0 ? (
+            <>
+              <NoData />
+            </>
+          ) : (
+            <>
+              {profileUserPosts.map((post) => {
+                return (
+                  <div className="col-lg-6 mx-auto p-1" key={post.id}>
+                    <PostCard post={post} key={post.id} />
+                  </div>
+                );
+              })}
+            </>
+          )}
         </div>
       </div>
     </>

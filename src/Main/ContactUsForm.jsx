@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import Loading from "./ExtraComponents/Loading";
 
 const ContactUsForm = () => {
   const [email, setEmail] = useState();
@@ -34,15 +35,7 @@ const ContactUsForm = () => {
   return (
     <>
       {isLoading ? (
-        <>
-          <div className="card card-body py-5">
-            <center>
-              <div className="spinner-grow text-dark" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </center>
-          </div>
-        </>
+        <Loading />
       ) : (
         <>
           {successMesg ? (

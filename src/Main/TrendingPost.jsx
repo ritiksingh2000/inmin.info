@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AllPosts } from "../App";
+import NoData from "./ExtraComponents/NoData";
 import PostCard from "./PostCard";
 
 const TrendingPost = () => {
@@ -16,7 +17,10 @@ const TrendingPost = () => {
   return (
     <>
       <div className="container">
-        <div className="col-10 col-md-9 mx-auto px-md-5 py-2">
+        <div className="card my-3">
+          <p className="text-center h1 pt-1">Trending Posts</p>
+        </div>
+        <div className="col-10 col-md-9 mx-auto px-md-5 pt-2">
           <div className="form-floating ">
             <input
               type="text"
@@ -34,34 +38,39 @@ const TrendingPost = () => {
             <label htmlFor="search">Search A Keywoard</label>
           </div>
         </div>
-        <div className="row g-0 mb-2">
-          {searchFilter === null ? (
+        <div className="row g-0 mb-3 mt-0">
+          {allposts.length === 0 ? (
             <>
-              <div className="card my-3">
-                <p className="text-center h1 pt-1">Trending Posts</p>
-              </div>
-              <div className="col-11 col-md-8 p-1 mx-auto">
-                {allposts
-                  .filter((post) => allposts.indexOf(post) < 10)
-                  .map((post) => {
-                    return <PostCard post={post} key={post.id} />;
-                  })}
-              </div>
+              <NoData />
             </>
           ) : (
             <>
-              <div className="col-11 col-md-8 p-1 mx-auto">
-                {allposts
-                  .filter((post) => {
-                    const postData =
-                      `${post.Subject} ${post.Details}`.toLowerCase();
+              {searchFilter === null ? (
+                <>
+                  <div className="col-11 col-md-8 p-1 mx-auto">
+                    {allposts
+                      .filter((post) => allposts.indexOf(post) < 10)
+                      .map((post) => {
+                        return <PostCard post={post} key={post.id} />;
+                      })}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="col-11 col-md-8 p-1 mx-auto">
+                    {allposts
+                      .filter((post) => {
+                        const postData =
+                          `${post.Subject} ${post.Details}`.toLowerCase();
 
-                    return postData.includes(searchFilter.toLowerCase());
-                  })
-                  .map((post) => {
-                    return <PostCard post={post} key={post.id} />;
-                  })}
-              </div>
+                        return postData.includes(searchFilter.toLowerCase());
+                      })
+                      .map((post) => {
+                        return <PostCard post={post} key={post.id} />;
+                      })}
+                  </div>
+                </>
+              )}
             </>
           )}
         </div>

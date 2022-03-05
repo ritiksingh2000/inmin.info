@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AllPosts, PostsComments } from "../../App";
 import HTMLReactParser from "html-react-parser";
 import PostCard from "../PostCard";
+import Loading from "../ExtraComponents/Loading";
+import NoData from "../ExtraComponents/NoData";
 
 const PostCarousel = () => {
   const allposts = AllPosts();
@@ -32,13 +34,7 @@ const PostCarousel = () => {
               ))}
             </>
           ) : (
-            <>
-              <center>
-                <div className="spinner-border text-dark" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </div>
-              </center>
-            </>
+            <NoData />
           )}
         </div>
         <div className="card-footer text-center">

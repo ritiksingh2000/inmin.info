@@ -1,7 +1,9 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db, storage } from "../../firebase";
+import Loading from "../ExtraComponents/Loading";
 
 const EditPost = ({ post, User }) => {
   const styletextarea = { height: "150px" };
@@ -13,6 +15,7 @@ const EditPost = ({ post, User }) => {
   const [successMesg, setSuccessMesg] = useState();
   const [errorMesg, setErrorMesg] = useState();
   const date = Date();
+  const navigate = useNavigate();
 
   const UpdatePost = async () => {
     setIsLoading(true);
@@ -50,6 +53,11 @@ const EditPost = ({ post, User }) => {
     }
   };
 
+  const deletePOst = async (postID) => {
+    await deleteDoc(doc(db, "posts", postID));
+    window.location.replace(window.location.href);
+  };
+
   return (
     <>
       <button
@@ -83,13 +91,7 @@ const EditPost = ({ post, User }) => {
               ></button>
             </div>
             {isLoading ? (
-              <>
-                <center>
-                  <div className="spinner-border text-dark" role="status">
-                    <span className="visually-hidden">Updating...</span>
-                  </div>
-                </center>
-              </>
+            <Loading/>
             ) : (
               <>
                 {successMesg ? (
@@ -158,10 +160,7 @@ const EditPost = ({ post, User }) => {
                         </button>
                         <button
                           className="btn btn-danger mx-md-5"
-                          onClick={() => {
-                            deleteDoc(doc(db, "posts", post.id));
-                            window.location.reload();
-                          }}
+                          onClick={() => deletePOst(post.id)}
                           type="button"
                         >
                           Delete

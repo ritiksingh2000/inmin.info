@@ -3,6 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Main/ExtraComponents/Loading";
 
 const Signup = ({ setView }) => {
   const [fName, setFName] = useState();
@@ -78,13 +79,7 @@ const Signup = ({ setView }) => {
           ) : (
             <>
               {isLoading ? (
-                <>
-                  <center>
-                    <div className="spinner-border text-success" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </div>
-                  </center>
-                </>
+                <Loading/>
               ) : (
                 <>
                   <div className="form-floating my-3">

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CurrentUser, PostReports } from "../../App";
 import { db } from "../../firebase";
+import Loading from "../ExtraComponents/Loading";
 
 const Report = ({ post }) => {
   const Reports = PostReports();
@@ -83,18 +84,7 @@ const Report = ({ post }) => {
                 </div>
               )}
               {isLoading ? (
-                <>
-                  <center>
-                    <button className="btn btn-light" type="button" disabled>
-                      <span
-                        className="spinner-border spinner-border-sm"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      <span className="visually-hidden">Loading...</span>
-                    </button>
-                  </center>
-                </>
+                <Loading />
               ) : (
                 <>
                   <div className="mb-3">
