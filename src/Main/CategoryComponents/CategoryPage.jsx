@@ -30,7 +30,7 @@ const CategoryPage = () => {
   }, 2000);
   return (
     <div className="container">
-      <CategoryHeader theCategory={theCategory[0]} />
+      
       {isLoading ? (
         <Loading />
       ) : CTGposts.length === 0 ? (
@@ -41,6 +41,7 @@ const CategoryPage = () => {
         <>
           {CTGposts.length > 0 && theCategory.length > 0 ? (
             <>
+            <CategoryHeader theCategory={theCategory[0]} />
               <CategoryBody CTGposts={CTGposts} />
             </>
           ) : (
