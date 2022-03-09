@@ -48,7 +48,7 @@ const LatestPost = () => {
             <>
               {searchFilter === null ? (
                 <>
-                  <div className="col-11 col-md-8 p-1 mx-auto">
+                  <div className="col-11 col-md-10 p-1 mx-auto">
                     {latestPosts
                       .filter((post) => allposts.indexOf(post) < 10)
                       .map((post) => {
