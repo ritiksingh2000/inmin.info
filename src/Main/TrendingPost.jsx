@@ -4,6 +4,10 @@ import NoData from "./ExtraComponents/NoData";
 import PostCard from "./PostCard";
 
 const TrendingPost = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 2000);
   const allposts = AllPosts();
   const [searchFilter, setSearchFilter] = useState(null);
 

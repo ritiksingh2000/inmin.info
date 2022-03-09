@@ -22,15 +22,9 @@ const PostFooter = ({ post, User, setWarning }) => {
         });
       } else {
         const postRef = doc(db, "posts", post.id);
-        if (post.Likes.length > 1) {
-          const updatePost = await updateDoc(postRef, {
-            Likes: [...post.Likes, { by: User.id }],
-          });
-        } else {
-          const updatePost = await updateDoc(postRef, {
-            Likes: [{ by: User.id }],
-          });
-        }
+        const updatePost = await updateDoc(postRef, {
+          Likes: [...post.Likes, { by: User.id }],
+        });
       }
     }
   };

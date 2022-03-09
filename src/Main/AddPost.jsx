@@ -143,18 +143,22 @@ const AddPost = () => {
                         required
                       />
                     </div>
+                    <br />
+                    <p className="text-start h6 mb-1 mt-0">Post Category</p>
+
                     <select
                       className="form-select my-3"
                       onChange={(ele) => setCtgry(ele.target.value)}
                       aria-label="Default select example"
                     >
-                      <option disabled>Select Post Category . . . </option>
+                      <option>Select Post Category . . . </option>
                       {Categories.map((category) => (
                         <option key={category.id} value={category.Name}>
                           {category.Name}
                         </option>
                       ))}
                     </select>
+                    <br />
                     <div className="mb-3">
                       <label htmlFor="details" className="form-label">
                         Details

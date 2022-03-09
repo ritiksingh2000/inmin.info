@@ -41,7 +41,7 @@ const PostCarousel = () => {
           <center>
             <Link
               to="/posts/latest"
-              className="btn btn-outline-dark btn-sm fs-4 py-0"
+              className="btn btn-outline-dark btn-sm fs-5 py-0"
             >
               All Latest Posts
             </Link>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { AllPosts, CurrentUser } from "../App";
 import AddPost from "./AddPost";
 import PostCard from "./PostCard";
-import loadingImg from "./imgs/MainLoadingScreen.gif";
 import NoData from "./ExtraComponents/NoData";
+import Loading from "./ExtraComponents/Loading";
 
 const AllPostsPage = () => {
   const allposts = AllPosts();
@@ -20,18 +20,7 @@ const AllPostsPage = () => {
   return (
     <>
       {isLoadingData ? (
-        <center>
-          <div className="container">
-            <div className="card card-body my-3">
-              <div className="row g-0">
-                <div className="col-md-6 mx-auto">
-                  <img src={loadingImg} className="img-fluid" alt="..." />
-                </div>
-              </div>
-              <p className="text-center h2">Loading Data . . .</p>
-            </div>
-          </div>
-        </center>
+        <Loading />
       ) : (
         <>
           {allposts.length === 0 ? (

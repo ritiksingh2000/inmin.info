@@ -40,7 +40,7 @@ const TrendingPosts = () => {
           <center>
             <Link
               to="/posts/trending"
-              className="btn btn-outline-dark btn-sm fs-4 py-0"
+              className="btn btn-outline-dark btn-sm fs-5 py-0"
             >
               All Trending Posts
             </Link>

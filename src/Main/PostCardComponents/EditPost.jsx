@@ -2,12 +2,15 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { AllCategories } from "../../App";
 import { db, storage } from "../../firebase";
 import Loading from "../ExtraComponents/Loading";
 import RichTextEditor from "../ExtraComponents/RichTextEditor";
 
 const EditPost = () => {
   const location = useLocation();
+
+  const Categories = AllCategories();
 
   const post = location.state[0];
   const User = location.state[1];
@@ -16,6 +19,7 @@ const EditPost = () => {
   const [img, setImg] = useState(null);
   const [subject, setSubject] = useState(post.Subject);
   const [details, setDetails] = useState(post.Details);
+  const [category, setCategory] = useState(post.Category);
   const [tags, setTags] = useState(post.Tags);
   const [isLoading, setIsLoading] = useState(false);
   const [successMesg, setSuccessMesg] = useState();
@@ -30,6 +34,7 @@ const EditPost = () => {
       const PostUpdate = await updateDoc(postRef, {
         Subject: subject,
         Details: details,
+        Category: category,
         CreatedAt: date,
         Tags: tags,
       }).then(() => {
@@ -46,6 +51,7 @@ const EditPost = () => {
                 Image: url,
                 Subject: subject,
                 Details: details,
+                Category: category,
                 CreatedAt: date,
                 Tags: tags,
               }).then(() => {
@@ -118,6 +124,21 @@ const EditPost = () => {
                         id="sub"
                         defaultValue={post.Subject}
                       />
+                    </div>
+                    <div className="my-3 shadow-sm">
+                      <p className="text-start h6 mb-1 mt-0">Post Category</p>
+                      <select
+                        className="form-select my-3"
+                        onChange={(ele) => setCategory(ele.target.value)}
+                        aria-label="Default select example"
+                      >
+                        <option>Select Post Category . . . </option>
+                        {Categories.map((category) => (
+                          <option key={category.id} value={category.Name}>
+                            {category.Name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="my-3 shadow-sm">
                       <p className="text-start h6 mb-1 mt-0">Details</p>
