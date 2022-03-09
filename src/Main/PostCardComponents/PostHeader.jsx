@@ -1,13 +1,12 @@
-import { doc, getDoc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CurrentUser } from "../../App";
-import { db } from "../../firebase";
-import EditPost from "./EditPost";
 import Report from "./Report";
 
 const PostHeader = ({ post }) => {
   const User = CurrentUser();
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="card-header shadow-sm row px-0 pt-2 pb-0 m-0">
@@ -37,7 +36,17 @@ const PostHeader = ({ post }) => {
                 <>
                   {User.id === post.By.id && (
                     <>
-                      <EditPost User={User} post={post} />
+                      <button
+                        className="btn btn-outline-dark btn-sm shadow-sm mx-1  px-1 py-0"
+                        onClick={() =>
+                          navigate(
+                            `/edit-post/${post.Subject.replaceAll(" ", "_")}`,
+                            { state: [post, User] }
+                          )
+                        }
+                      >
+                        🖊
+                      </button>
                     </>
                   )}
                 </>

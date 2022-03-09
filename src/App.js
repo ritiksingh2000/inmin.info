@@ -9,7 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import ProfilePage from "./Main/ProfilePage";
-import Error404 from "./Main/Error404";
+import Error404 from "./Main/ExtraComponents/Error404";
 import LatestPost from "./Main/LatestPost";
 import TrendingPost from "./Main/TrendingPost";
 import AllPostsPage from "./Main/AllPostsPage";
@@ -19,6 +19,8 @@ import AboutUs from "./Main/AboutUs";
 import ContactUs from "./Main/ContactUs";
 import Donate from "./Main/Donate";
 import SharedPost from "./Main/SharedPost";
+import AddPost from "./Main/AddPost";
+import EditPost from "./Main/PostCardComponents/EditPost";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -110,6 +112,14 @@ function App() {
             {/* Login Signup */}
             <Route exact path="/user/signup_login" element={<Signup_Login />} />
             <Route exact path="/user/:userId" element={<ProfilePage />} />
+
+            {/* Posts */}
+            <Route exact path="/add-post/" element={<AddPost />} />
+            <Route
+              exact
+              path="/edit-post/:postSubject/"
+              element={<EditPost />}
+            />
 
             {/* Content Filter Navigation */}
             <Route exact path="/:category/posts" element={<CategoryPage />} />

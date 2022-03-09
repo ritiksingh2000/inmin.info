@@ -36,56 +36,6 @@ const Header = ({ errorMesg }) => {
           </>
         )}
       </div>
-
-      <div className="row g-0">
-        <div className="col-md-4 mx-auto">
-          {User !== null && (
-            <>
-              {User.isAuthor && (
-                <>
-                  <center>
-                    <button
-                      type="button"
-                      className="btn btn-light mb-2  px-3 fw-bold"
-                      data-bs-toggle="modal"
-                      data-bs-target="#addPost"
-                    >
-                      Add Post
-                    </button>
-
-                    <div
-                      className="modal fade"
-                      id="addPost"
-                      tabIndex="-1"
-                      aria-labelledby="addPost"
-                      aria-hidden="true"
-                    >
-                      <div className="modal-dialog     modal-lg  ">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title" id="addPost">
-                              Add Post
-                            </h5>
-                            <button
-                              type="button"
-                              className="btn-close"
-                              data-bs-dismiss="modal"
-                              aria-label="Close"
-                            ></button>
-                          </div>
-                          <div className="modal-body">
-                            <AddPost />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </center>
-                </>
-              )}
-            </>
-          )}
-        </div>
-      </div>
     </>
   );
 };

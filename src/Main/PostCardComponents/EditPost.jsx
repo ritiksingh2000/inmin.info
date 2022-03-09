@@ -1,11 +1,17 @@
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { db, storage } from "../../firebase";
 import Loading from "../ExtraComponents/Loading";
+import RichTextEditor from "../ExtraComponents/RichTextEditor";
 
-const EditPost = ({ post, User }) => {
+const EditPost = () => {
+  const location = useLocation();
+
+  const post = location.state[0];
+  const User = location.state[1];
+
   const styletextarea = { height: "150px" };
   const [img, setImg] = useState(null);
   const [subject, setSubject] = useState(post.Subject);
@@ -58,120 +64,99 @@ const EditPost = ({ post, User }) => {
     window.location.replace(window.location.href);
   };
 
+  if (successMesg || errorMesg) {
+    setTimeout(() => {
+      setSuccessMesg();
+      setErrorMesg();
+    }, 3000);
+  }
+
   return (
     <>
-      <button
-        type="button"
-        className="btn btn-outline-dark btn-sm shadow-sm  px-1 py-0"
-        data-bs-toggle="modal"
-        data-bs-target={`#editPost${post.id}`}
-      >
-        🖊
-      </button>
-      {"  "}
-      <div
-        className="modal fade"
-        id={`editPost${post.id}`}
-        tabIndex="-1"
-        aria-labelledby="reportPost"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="reportPost">
-                <b className="text-dark">Update : </b>{" "}
-                <small className="fst-italic">{post.Subject}</small>
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            {isLoading ? (
-            <Loading/>
-            ) : (
-              <>
-                {successMesg ? (
-                  <>
-                    <div className="alert alert-success" role="alert">
-                      <p className="h5 text-center">{successMesg}</p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {errorMesg && (
-                      <>
-                        <div className="alert alert-danger" role="alert">
-                          <p className="h4 text-center">{errorMesg}</p>
-                        </div>
-                      </>
-                    )}
-                    <div className="modal-body">
-                      <div className="mb-3">
-                        <p className="text-start h6 mb-1 mt-0">New Image</p>
-                        <input
-                          className="form-control"
-                          accept="image/*"
-                          type="file"
-                          onChange={(ele) => setImg(ele.target.files[0])}
-                          id="img"
-                        />
-                      </div>
-                      <div className="my-3 shadow-sm">
-                        <p className="text-start h6 mb-1 mt-0">Subject</p>
-                        <input
-                          type="text"
-                          className="form-control"
-                          onChange={(ele) => setSubject(ele.target.value)}
-                          id="sub"
-                          defaultValue={post.Subject}
-                        />
-                      </div>
-                      <div className="my-3 shadow-sm">
-                        <p className="text-start h6 mb-1 mt-0">Details</p>
-                        <textarea
-                          className="form-control "
-                          defaultValue={post.Details}
-                          onChange={(ele) => setDetails(ele.target.value)}
-                          id="Details"
-                          style={styletextarea}
-                        ></textarea>
-                      </div>
-                      <div className="my-3 shadow-sm">
-                        <p className="text-start h6 mb-1 mt-0">Tags</p>
-                        <input
-                          type="text"
-                          className="form-control"
-                          onChange={(ele) => setTags(ele.target.value)}
-                          id="tags"
-                          defaultValue={post.Tags}
-                        />
-                      </div>
-                      <div className="d-grid gap-2">
-                        <button
-                          className="btn btn-outline-dark mx-md-5"
-                          onClick={UpdatePost}
-                          type="button"
-                        >
-                          Update
-                        </button>
-                        <button
-                          className="btn btn-danger mx-md-5"
-                          onClick={() => deletePOst(post.id)}
-                          type="button"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </>
-            )}
+      <div className="container my-3 px-md-4">
+        <div className="card card-body">
+          <div className="card-header h3 text-center shadow-sm mb-3">
+            Add New Post
           </div>
+
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              {successMesg ? (
+                <>
+                  <div className="alert alert-success" role="alert">
+                    <p className="h5 text-center">{successMesg}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {errorMesg && (
+                    <>
+                      <div className="alert alert-danger" role="alert">
+                        <p className="h4 text-center">{errorMesg}</p>
+                      </div>
+                    </>
+                  )}
+                  <div className="card-body">
+                    <div className="mb-3">
+                      <p className="text-start h6 mb-1 mt-0">New Image</p>
+                      <input
+                        className="form-control"
+                        accept="image/*"
+                        type="file"
+                        onChange={(ele) => setImg(ele.target.files[0])}
+                        id="img"
+                      />
+                    </div>
+                    <div className="my-3 shadow-sm">
+                      <p className="text-start h6 mb-1 mt-0">Subject</p>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(ele) => setSubject(ele.target.value)}
+                        id="sub"
+                        defaultValue={post.Subject}
+                      />
+                    </div>
+                    <div className="my-3 shadow-sm">
+                      <p className="text-start h6 mb-1 mt-0">Details</p>
+                      <RichTextEditor
+                        ivalue={post.Details}
+                        setDetails={setDetails}
+                      />
+                    </div>
+                    <div className="my-3 shadow-sm">
+                      <p className="text-start h6 mb-1 mt-0">Tags</p>
+                      <input
+                        type="text"
+                        className="form-control"
+                        onChange={(ele) => setTags(ele.target.value)}
+                        id="tags"
+                        defaultValue={post.Tags}
+                      />
+                    </div>
+                    <div className="d-grid gap-2">
+                      <button
+                        className="btn btn-outline-dark mx-md-5"
+                        onClick={UpdatePost}
+                        type="button"
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="btn btn-danger mx-md-5"
+                        onClick={() => deletePOst(post.id)}
+                        type="button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          )}
         </div>
       </div>
     </>
