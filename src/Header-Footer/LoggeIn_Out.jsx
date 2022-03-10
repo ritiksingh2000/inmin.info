@@ -269,7 +269,7 @@ const LoggeIn_Out = () => {
                   <hr className="my-3" />
                   {User !== null && (
                     <>
-                      {User.isAuthor ? (
+                      {User.isAuthor == true ? (
                         <>
                           <Link
                             to="/add-post/"

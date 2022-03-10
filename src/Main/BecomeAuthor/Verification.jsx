@@ -22,42 +22,43 @@ const Verification = () => {
                 </p>
               </div>
               <div className="card-body">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
-                  accusamus corrupti est et debitis minima expedita molestiae
-                  quo corporis ea sapiente fugit ipsum consequuntur a, nisi
-                  ducimus quos. Officia, optio! Repellendus odio ea provident
-                  consectetur velit debitis ipsa libero error inventore
-                  temporibus esse consequuntur, nesciunt nam. Similique porro
-                  ullam, ex recusandae, natus sunt hic, officiis quia distinctio
-                  consequatur odit quae. Amet cumque, corporis quae mollitia
-                  similique rerum suscipit non, animi dolorum blanditiis
-                  adipisci facere, ipsam in quod ullam!
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum,
-                  accusamus corrupti est et debitis minima expedita molestiae
-                  quo corporis ea sapiente fugit ipsum consequuntur a, nisi
-                  ducimus quos. Officia, optio! Repellendus odio ea provident
-                  consectetur velit debitis ipsa libero error inventore
-                  temporibus esse consequuntur, nesciunt nam. Similique porro
-                  ullam, ex recusandae, natus sunt hic, officiis quia distinctio
-                  consequatur odit quae. Amet cumque, corporis quae mollitia
-                  similique rerum suscipit non, animi dolorum blanditiis
-                  adipisci facere, ipsam in quod ullam!
-                </p>
-
                 <div className="d-grid gap-2">
+                  <div className="my-2">
+                    <p>
+                      By becoming an author you are accepting the
+                      responsibilities of providing information that is{" "}
+                      <strong>true, up to date and regular</strong>. If in any
+                      case your post receives{" "}
+                      <strong>
+                        3 valid Reports, your Post Will get deleted.
+                      </strong>
+                    </p>
+                    <p>
+                      <strong>
+                        By becoming an author you are accepting to :
+                      </strong>
+                    </p>
+                    <ul>
+                      <li>provide information that is 100% true.</li>
+                      <li>
+                        provide information regularly{" "}
+                        <strong>i.e. minimum 2 posts in a week</strong>.
+                      </li>
+                      <li>
+                        delete the post if there are 3 valid reports from users.
+                      </li>
+                    </ul>
+                  </div>
                   {auth.currentUser.emailVerified ? (
                     <>
-                      <buttons
+                      <button
                         type="button"
                         disabled
                         className="btn btn-success fw-bold fs-4 my-3"
                       >
                         {" "}
                         ✔ Email Verification Complete{" "}
-                      </buttons>
+                      </button>
                     </>
                   ) : (
                     <>

@@ -4,9 +4,25 @@ import LoggeIn_Out from "./LoggeIn_Out";
 import logoImg from "./logo.png";
 import AddPost from "../Main/AddPost";
 import { CurrentUser } from "../App";
+import { auth, db } from "../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 const Header = ({ errorMesg }) => {
   const User = CurrentUser();
+  if (User) {
+    if (User.E_Verify === false || User.isAuthor === false) {
+      if (auth.currentUser.emailVerified === true) {
+        const userRef = doc(db, "users", User.id);
+        const SetEmailVerificationStatus = async () => {
+          await updateDoc(userRef, {
+            E_Verify: true,
+            isAuthor: true,
+          });
+        };
+        SetEmailVerificationStatus();
+      }
+    }
+  }
   return (
     <>
       <div className="container">
