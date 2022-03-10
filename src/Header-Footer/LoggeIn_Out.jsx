@@ -267,12 +267,27 @@ const LoggeIn_Out = () => {
                     Contact Us
                   </Link>
                   <hr className="my-3" />
-                  <Link
-                    to="/add-post/"
-                    className="btn btn-lg my-1 btn-success shadow fw-bold py-1"
-                  >
-                    Add Post
-                  </Link>
+                  {User !== null && (
+                    <>
+                      {User.isAuthor ? (
+                        <>
+                          <Link
+                            to="/add-post/"
+                            className="btn btn-lg my-1 btn-success shadow fw-bold py-1"
+                          >
+                            Add Post
+                          </Link>
+                        </>
+                      ) : (
+                        <Link
+                          to="/become-author/"
+                          className="btn btn-lg my-1 btn-warning shadow fw-bold py-1"
+                        >
+                          Become Author
+                        </Link>
+                      )}
+                    </>
+                  )}
                   {/* <Link
                     to="/donate/"
                     className="btn btn-lg my-1 btn-warning shadow fw-bold py-1"

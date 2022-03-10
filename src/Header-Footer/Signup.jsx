@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Main/ExtraComponents/Loading";
 
@@ -23,17 +23,24 @@ const Signup = ({ setView }) => {
       await createUserWithEmailAndPassword(auth, email, password).then(
         async (user) => {
           const userRef = collection(db, "users");
+
           const createUser = await addDoc(userRef, {
             FullName: fName,
             Email: email,
             Username: username,
             Bio: bio,
             isAuthor: false,
+            P_Verify: false,
+            E_Verify: false,
             isAdmin: false,
             Image:
               "https://img.icons8.com/external-others-inmotus-design/67/4a90e2/external-login-buttons-others-inmotus-design.png",
             uid: user.user.uid,
-          }).catch((err) => setErrorMesg(err));
+          })
+            .then(async () => {
+              await updateProfile(auth.currentUser, { displayName: fName });
+            })
+            .catch((err) => setErrorMesg(err));
         }
       );
       setIsLoading(false);
@@ -79,7 +86,7 @@ const Signup = ({ setView }) => {
           ) : (
             <>
               {isLoading ? (
-                <Loading/>
+                <Loading />
               ) : (
                 <>
                   <div className="form-floating my-3">

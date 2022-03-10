@@ -21,6 +21,8 @@ import Donate from "./Main/Donate";
 import SharedPost from "./Main/SharedPost";
 import AddPost from "./Main/AddPost";
 import EditPost from "./Main/PostCardComponents/EditPost";
+import Verification from "./Main/BecomeAuthor/Verification";
+import EmailVerificatin from "./Main/BecomeAuthor/EmailVerificatin";
 
 export const PostsComments = () => {
   const [comments, setComments] = useState([]);
@@ -114,6 +116,12 @@ function App() {
             <Route exact path="/user/:userId" element={<ProfilePage />} />
 
             {/* Posts */}
+            <Route exact path="/become-author/" element={<Verification />} />
+            <Route
+              exact
+              path="/become-author/email-verification/"
+              element={<EmailVerificatin />}
+            />
             <Route exact path="/add-post/" element={<AddPost />} />
             <Route
               exact
