@@ -2,8 +2,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import GoogleSignin from "./GoogleSignin";
 
-const Login = ({ setView }) => {
+const Login = ({ setView, setLoggingIn }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errorMesg, setErrorMesg] = useState();
@@ -68,6 +69,11 @@ const Login = ({ setView }) => {
             </button>
           </div>
         </div>
+
+        <div className="mb-3">
+          <GoogleSignin setLoggingIn={setLoggingIn} />
+        </div>
+
         <div className="card-footer text-muted">
           New User?{" "}
           <button
